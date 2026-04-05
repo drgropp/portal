@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title"></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(160deg, #0a1f0f 0%, #0f2d18 40%, #0d2415 70%, #081a0d 100%);
+      min-height: 100vh;
+    }
+
+    .link-item { transition: opacity 0.15s ease; }
+    .link-item:hover { opacity: 1 !important; }
+
+    .link-underline { position: relative; display: inline-block; }
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -1px;
+      width: 0; height: 1px;
+      background: #4ade80;
+      transition: width 0.2s ease;
+    }
+    .link-underline:hover::after { width: 100%; }
+
+    .profile-ring {
+      background: conic-gradient(from 180deg, #166534, #4ade80, #166534);
+      padding: 2px;
+      border-radius: 9999px;
+    }
+
+    .green-divide > li + li { border-top: 1px solid rgba(74, 222, 128, 0.08); }
+    .group:hover .arrow-icon { color: #4ade80; }
+  </style>
+</head>
+
+<body class="text-emerald-50 font-sans antialiased min-h-screen flex flex-col">
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║                  ★  YOUR CONFIG  ★                          ║
+     ║  Edit ONLY this block — everything on the page updates      ║
+     ║  automatically when you save.                               ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<script>
+  const ME = {
+    // ── Profile ──────────────────────────────────────────────────
+    name:    "(•˕ •マ",
+    handle:  "dr.gropp",
+    initials: "ドG",
+    bio:     "enjoy!",
+
+    // ── Projects — add / remove objects freely ────────────────────
+    projects: [
+      {
+        label: "GhostNote",
+        desc:  "Minimalist note-taking utility",
+        url:   "https://drgropp.github.io/ghostnote/"
+      },
+      {
+        label: "2048",
+        desc:  "Sliding tile puzzle",
+        url:   "https://drgropp.github.io/2048/"
+      },
+      // ── TEMPLATE: copy this object to add a project ──
+      // { label: "Project Name", desc: "Short description", url: "https://…" },
+    ],
+
+    // ── Socials — add / remove objects freely ────────────────────
+    socials: [
+      { label: "GitHub", desc: "drgropp",   url: "https://github.com/drgropp" },
+      { label: "X",      desc: "@nuggroyp", url: "https://x.com/nuggroyp" },
+    ],
+
+    // ── Footer ───────────────────────────────────────────────────
+    footerYear:  "2026",
+    footerStack: "HTML &amp; Tailwind",
+  };
+</script>
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║               END CONFIG — don't edit below                 ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+
+
+  <main class="flex-1 w-full max-w-[600px] mx-auto px-6 py-16 flex flex-col gap-14">
+
+    <!-- HEADER -->
+    <header class="flex flex-col items-center text-center gap-5">
+      <div class="profile-ring">
+        <div class="w-20 h-20 rounded-full bg-green-950 flex items-center justify-center text-green-400 font-mono text-xl font-medium" id="avatar"></div>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h1 class="text-emerald-50 text-xl font-medium tracking-tight" id="display-name"></h1>
+        <p class="font-mono text-xs text-green-600 tracking-widest" id="display-handle"></p>
+      </div>
+      <p class="text-sm text-green-300/60 leading-relaxed max-w-sm" id="display-bio"></p>
+    </header>
+
+    <!-- PROJECTS -->
+    <section>
+      <h2 class="font-mono text-[10px] uppercase tracking-[0.2em] text-green-700 mb-5">Current Projects</h2>
+      <ul class="flex flex-col green-divide" id="list-projects"></ul>
+    </section>
+
+    <!-- SOCIALS -->
+    <section>
+      <h2 class="font-mono text-[10px] uppercase tracking-[0.2em] text-green-700 mb-5">Socials &amp; Code</h2>
+      <ul class="flex flex-col green-divide" id="list-socials"></ul>
+    </section>
+
+  </main>
+
+  <footer class="w-full max-w-[600px] mx-auto px-6 pb-10 flex items-center justify-center">
+    <p class="font-mono text-[10px] text-green-900 tracking-wide" id="footer-text"></p>
+  </footer>
+
+  <!-- ── Renderer — no need to touch this ── -->
+  <script>
+    document.getElementById('page-title').textContent  = `${ME.name} — Developer & Writer`;
+    document.getElementById('avatar').textContent       = ME.initials;
+    document.getElementById('display-name').textContent = ME.name;
+    document.getElementById('display-handle').textContent = `@${ME.handle}`;
+    document.getElementById('display-bio').textContent  = ME.bio;
+    document.getElementById('footer-text').innerHTML    =
+      `© ${ME.footerYear} ${ME.name} &nbsp;·&nbsp; Built with ${ME.footerStack}`;
+
+    function buildList(listId, items) {
+      const ul = document.getElementById(listId);
+      items.forEach(item => {
+        ul.insertAdjacentHTML('beforeend', `
+          <li>
+            <a href="${item.url}" target="_blank" rel="noopener"
+               class="link-item flex justify-between items-baseline py-4 opacity-60 hover:opacity-100 group">
+              <div class="flex flex-col gap-0.5">
+                <span class="link-underline text-sm font-medium text-emerald-100">${item.label}</span>
+                <span class="text-xs text-green-700">${item.desc}</span>
+              </div>
+              <span class="arrow-icon font-mono text-[10px] text-green-900 transition-colors ml-4 shrink-0">↗</span>
+            </a>
+          </li>`);
+      });
+    }
+
+    buildList('list-projects', ME.projects);
+    buildList('list-socials',  ME.socials);
+  </script>
+
+</body>
+</html>
