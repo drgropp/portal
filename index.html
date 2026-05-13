@@ -55,19 +55,19 @@
 <body class="text-emerald-50 font-sans antialiased min-h-screen flex flex-col">
 
 <!-- ╔══════════════════════════════════════════════════════════════╗
-     ║                  ★  YOUR CONFIG  ★                          ║
-     ║  Edit ONLY this block — everything on the page updates      ║
-     ║  automatically when you save.                               ║
+     ║                   ★  YOUR CONFIG  ★                          ║
+     ║  Edit ONLY this block — everything on the page updates       ║
+     ║  automatically when you save.                                ║
      ╚══════════════════════════════════════════════════════════════╝ -->
 <script>
   const ME = {
     // ── Profile ──────────────────────────────────────────────────
-    name:    "(•˕ •マ",
-    handle:  "dr.gropp",
+    name:     "(•˕ •マ",
+    handle:   "dr.gropp",
     initials: "ドG",
-    bio:     "enjoy!",
+    bio:      "enjoy!",
 
-    // ── Projects — add / remove objects freely ────────────────────
+    // ── Projects ─────────────────────────────────────────────────
     projects: [
       {
         label: "GhostNote",
@@ -79,14 +79,15 @@
         desc:  "Sliding tile puzzle",
         url:   "https://drgropp.github.io/2048/"
       },
-      // ── TEMPLATE: copy this object to add a project ──
-      // { label: "Project Name", desc: "Short description", url: "https://…" },
     ],
 
-    // ── Socials — add / remove objects freely ────────────────────
+    // ── Socials ──────────────────────────────────────────────────
     socials: [
-      { label: "GitHub", desc: "drgropp",   url: "https://github.com/drgropp" },
-      { label: "X",      desc: "@nuggroyp", url: "https://x.com/nuggroyp" },
+      { label: "GitHub",  desc: "drgropp",        url: "https://github.com/drgropp" },
+      { label: "X",       desc: "@nuggroyp",      url: "https://x.com/nuggroyp" },
+      { label: "YouTube", desc: "@nugget1x",  url: "https://www.youtube.com/@nugget1x" },
+      { label: "Steam",   desc: "nugget",         url: "https://steamcommunity.com/profiles/76561199787601439/" },
+      { label: "Discord", desc: "nugget05527",    url: "https://discord.com/users/nugget05527" },
     ],
 
     // ── Footer ───────────────────────────────────────────────────
@@ -95,7 +96,7 @@
   };
 </script>
 <!-- ╔══════════════════════════════════════════════════════════════╗
-     ║               END CONFIG — don't edit below                 ║
+     ║               END CONFIG — don't edit below                  ║
      ╚══════════════════════════════════════════════════════════════╝ -->
 
 
@@ -131,7 +132,7 @@
     <p class="font-mono text-[10px] text-green-900 tracking-wide" id="footer-text"></p>
   </footer>
 
-  <!-- ── Renderer — no need to touch this ── -->
+  <!-- ── Renderer ── -->
   <script>
     document.getElementById('page-title').textContent  = `${ME.name} — Developer & Writer`;
     document.getElementById('avatar').textContent       = ME.initials;
