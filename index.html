@@ -81,11 +81,14 @@
       },
     ],
 
+    // ── Ko-fi ─────────────────────────────────────────────────────
+    kofi: { label: "Ko-fi", desc: "drgropp", url: "https://ko-fi.com/drgropp" },
+
     // ── Socials ──────────────────────────────────────────────────
     socials: [
       { label: "GitHub",  desc: "drgropp",        url: "https://github.com/drgropp" },
       { label: "X",       desc: "@nuggroyp",      url: "https://x.com/nuggroyp" },
-      { label: "YouTube", desc: "@nugget1x",  url: "https://www.youtube.com/@nugget1x" },
+      { label: "YouTube", desc: "@nugget1x",      url: "https://www.youtube.com/@nugget1x" },
       { label: "Steam",   desc: "nugget",         url: "https://steamcommunity.com/profiles/76561199787601439/" },
       { label: "Discord", desc: "nugget05527",    url: "https://discord.com/users/nugget05527" },
     ],
@@ -118,6 +121,12 @@
     <section>
       <h2 class="font-mono text-[10px] uppercase tracking-[0.2em] text-green-700 mb-5">Current Projects</h2>
       <ul class="flex flex-col green-divide" id="list-projects"></ul>
+    </section>
+
+    <!-- KOFI -->
+    <section>
+      <h2 class="font-mono text-[10px] uppercase tracking-[0.2em] text-green-700 mb-5">Pay to get your name in the credits of my game</h2>
+      <ul class="flex flex-col green-divide" id="list-kofi"></ul>
     </section>
 
     <!-- SOCIALS -->
@@ -160,6 +169,7 @@
     }
 
     buildList('list-projects', ME.projects);
+    buildList('list-kofi',  [ME.kofi]);
     buildList('list-socials',  ME.socials);
   </script>
 
